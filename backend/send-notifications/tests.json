@@ -1,0 +1,16 @@
+{
+  "tests": [
+    {
+      "name": "Process pending notifications",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "message": "string",
+        "sent_count": "number",
+        "total_pending": "number"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

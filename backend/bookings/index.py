@@ -72,7 +72,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
     
     if method == 'GET':
-        admin_password = event.get('headers', {}).get('X-Admin-Password', '')
+        headers = event.get('headers', {})
+        admin_password = headers.get('x-admin-password', '') or headers.get('X-Admin-Password', '')
         
         if admin_password != 'photographer2024':
             conn.close()

@@ -1,0 +1,5 @@
+{
+  "send-notifications": "https://functions.poehali.dev/432be0c0-2a2d-4845-adca-21957b6f3fc2",
+  "bookings": "https://functions.poehali.dev/eacda22c-e30e-4f3f-b8b3-45568f052309",
+  "reminders": "https://functions.poehali.dev/ff088d4b-9902-4e3e-a1e5-2faf848a52b4"
+}

@@ -1,0 +1,39 @@
+{
+  "tests": [
+    {
+      "name": "Create reminder",
+      "method": "POST",
+      "path": "/",
+      "headers": {
+        "X-Admin-Password": "photographer2024"
+      },
+      "body": {
+        "booking_id": 1,
+        "reminder_type": "email",
+        "reminder_text": "Напоминаем о вашей фотосессии завтра!",
+        "send_at": "2024-12-24T10:00:00",
+        "client_email": "client@example.com",
+        "client_phone": "+79001234567"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "id": "number",
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get all reminders",
+      "method": "GET",
+      "path": "/",
+      "headers": {
+        "X-Admin-Password": "photographer2024"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "reminders": "array"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

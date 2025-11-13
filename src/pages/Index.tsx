@@ -43,16 +43,41 @@ const Index = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleBooking = () => {
-    if (date) {
-      toast({
-        title: 'Заявка отправлена!',
-        description: `Вы выбрали дату: ${date.toLocaleDateString('ru-RU')}. Я свяжусь с вами в ближайшее время.`,
-      });
-    } else {
+  const handleBooking = async () => {
+    if (!date) {
       toast({
         title: 'Выберите дату',
         description: 'Пожалуйста, выберите дату съёмки',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/eacda22c-e30e-4f3f-b8b3-45568f052309', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          booking_date: date.toISOString().split('T')[0],
+          client_name: 'Клиент из формы',
+          client_phone: '+7 (900) 123-45-67',
+          client_email: 'client@example.com',
+          service_type: 'Фотосессия'
+        })
+      });
+
+      if (response.ok) {
+        toast({
+          title: 'Заявка отправлена!',
+          description: `Вы выбрали дату: ${date.toLocaleDateString('ru-RU')}. Я свяжусь с вами в ближайшее время.`,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось отправить заявку',
         variant: 'destructive'
       });
     }
