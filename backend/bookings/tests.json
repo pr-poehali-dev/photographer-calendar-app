@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "Create booking",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "booking_date": "2024-12-25",
+        "client_name": "Иван Иванов",
+        "client_phone": "+79001234567",
+        "client_email": "test@example.com",
+        "service_type": "Свадебная съёмка"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "id": "number",
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get all bookings with admin password",
+      "method": "GET",
+      "path": "/",
+      "headers": {
+        "X-Admin-Password": "photographer2024"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "bookings": "array"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
